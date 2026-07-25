@@ -85,6 +85,11 @@ a:active {
     vertical-align: middle;
 }
 
+.message-body {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
 .submit-btn {
     font-family: verdana;
     background: white;
