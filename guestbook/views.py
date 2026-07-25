@@ -26,7 +26,7 @@ def sign(request):
         form = EntryForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(reverse("index_view") + "?posted=yes")
+            return redirect(reverse("guestbook:index") + "?posted=yes")
     else:
         form = EntryForm()
 

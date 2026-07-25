@@ -31,7 +31,7 @@
                      height="35"
                      class="inline-img"
                      alt="" />
-                <a href="{% url 'sign_view' %}">Sign Guestbook</a>
+                <a href="{% url 'guestbook:sign' %}">Sign Guestbook</a>
             </p>
             {% if is_posted %}
                 <div class="thanks">
@@ -58,23 +58,26 @@
                                 class="text local-time"
                                 data-utc="{{ e.published|date:'Y-m-d' }}">{{ e.published|date:'d/m/Y' }}</td>
                         </tr>
-                        <tr>
-                            <td align="left" class="text">
-                                <strong>Location</strong>
-                            </td>
-                            <td align="left" class="text">
-                                <img src="{{ e.location.flag }}"
-                                     height="12"
-                                     width="20"
-                                     border="0"
-                                     alt="{{ e.location.name }}">
-                            </td>
-                        </tr>
+                        {% if e.location %}
+                            <tr>
+                                <td align="left" class="text">
+                                    <strong>Location</strong>
+                                </td>
+                                <td align="left" class="text">
+                                    <img src="{{ e.location.flag }}"
+                                         height="12"
+                                         width="20"
+                                         border="0"
+                                         alt="{{ e.location.name }}"
+                                         title="{{ e.location.name }}">
+                                </td>
+                            </tr>
+                        {% endif %}
                         <tr>
                             <td valign="top" align="left" class="text">
                                 <strong>Message</strong>
                             </td>
-                            <td align="left" class="text">{{ e.message|render_smilies }}</td>
+                            <td align="left" class="text message-body">{{ e.message|render_smilies }}</td>
                         </tr>
                     </table>
                 </div>
