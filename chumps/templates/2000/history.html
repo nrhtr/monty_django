@@ -1,0 +1,47 @@
+{% extends "2000/_layout.html" %}
+{% load l10n %}
+{% block content %}
+  <style>
+      table.bordered {
+          border-collapse: collapse;
+      }
+
+      table.bordered td,
+      table.bordered th {
+          border: 1px solid #0047bd;
+      }
+  </style>
+  <table width="85%" cellpadding="5">
+    <tbody>
+      <tr>
+        <td width="100%">
+          <p>
+            <font face="Tahoma" size="5"> History </font>
+          </p>
+          <p>
+            <table class="bordered">
+              <thead>
+                <tr>
+                  <th class="px-4 py-2">Image</th>
+                  <th class="px-4 py-2">Name</th>
+                  <th class="px-2 py-2">Date</th>
+                </tr>
+              </thead>
+              <tbody style="border: 1px solid #FFFFFF; border-collapse: collapse;">
+                {% for chump in chumps %}
+                  <tr style="border: 1px solid #FFFFFF;">
+                    <td class="px-4 py-2">
+                      {% with chump.media|first as image %}<img src={{ image.url }} alt={{ chump.name }} width="120" />{% endwith %}
+                    </td>
+                    <td class="border px-4 py-2">{{ chump.name }}</td>
+                    <td class="border px-4 py-2">{{ chump.date|localize }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}
